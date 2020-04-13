@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     # Django REST framework 
     'rest_framework',
     # API application 
-    'API.apps.ApiConfig',
+    'API',
     #CORS
-    'corsheaders',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,15 +57,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # CORS
-    'corsheaders.middleware.CorsMiddleware',  
-    'django.middleware.common.CommonMiddleware',  
+    
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200'
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'HousingHistory.urls'
 
@@ -82,6 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'HousingHistory.wsgi.application'
+
 
 
 # Database
@@ -136,3 +136,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
